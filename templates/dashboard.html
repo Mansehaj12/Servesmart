@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard | ServeSmart</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fffdf8;
+      color: #2e1f17;
+    }
+
+    .dashboard-container {
+      max-width: 800px;
+      margin: 60px auto;
+      background: #fff8f0;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    h2 {
+      color: #d3232a;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .welcome-msg {
+      font-size: 1.2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .actions a {
+      padding: 0.75rem 1.5rem;
+      background-color: #d3232a;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .actions a:hover {
+      background-color: #a91e25;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="dashboard-container">
+    <h2>Welcome to ServeSmart</h2>
+    <div class="welcome-msg">
+      Hello, <strong>{{ username }}</strong>! What would you like to do today?
+    </div>
+    <div class="actions">
+      <a href="{{ url_for('menu') }}">View Menu</a>
+      <a href="{{ url_for('cart') }}">View Cart</a>
+      <a href="{{ url_for('orders') }}">My Orders</a>
+      <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+  </div>
+
+</body>
+</html>

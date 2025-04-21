@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ServeSmart | Home</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <style>
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #fffdf8;
+        color: #2e1f17;
+      }
+
+      /* Top Navbar */
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        background-color: white;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .navbar .left,
+      .navbar .right {
+        display: flex;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #d3232a;
+        margin-right: 2rem;
+      }
+
+      .nav-link {
+        margin-right: 1.5rem;
+        font-weight: bold;
+        text-decoration: none;
+        color: #2e1f17;
+      }
+
+      .nav-link:hover {
+        color: #d3232a;
+      }
+
+      .icon-link {
+        margin-left: 1.5rem;
+        text-decoration: none;
+        color: #2e1f17;
+        font-size: 1.2rem;
+      }
+
+      /* Order Bar */
+      .order-bar {
+        background-color: #1e1e1e;
+        color: white;
+        padding: 0.8rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .order-bar span {
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+      }
+
+      /* Dine-In Notice */
+      .dinein-banner {
+        text-align: center;
+        margin: 2rem auto;
+        font-size: 1.3rem;
+        background: #ffeaea;
+        color: #a70000;
+        padding: 1rem;
+        border-radius: 10px;
+        width: fit-content;
+      }
+
+      /* Food Gallery */
+      .food-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+        padding: 2rem;
+      }
+
+      .food-gallery img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 15px;
+        transition: transform 0.3s ease;
+      }
+
+      .food-gallery img:hover {
+        transform: scale(1.05);
+      }
+
+      /* Promo */
+      .promo-banner {
+        background: #d3232a;
+        color: white;
+        text-align: center;
+        padding: 2rem 1rem;
+      }
+
+      .promo-banner h1 {
+        font-size: 2.5rem;
+      }
+
+      .promo-banner p {
+        font-size: 1.2rem;
+      }
+
+      /* Footer */
+      .footer {
+        text-align: center;
+        padding: 1rem;
+        background: #d3232a;
+        color: white;
+        margin-top: 3rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="left">
+        <div class="logo">ServeSmart</div>
+        <a class="nav-link" href="{{ url_for('menu') }}">Menu</a>
+      </div>
+      <div class="right">
+        {% if username %}
+          <span class="username-text">Welcome, {{ username }}</span>
+          <a class="icon-link" href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+          <a class="icon-link" href="{{ url_for('login') }}">👤 Sign In</a>
+          <a class="icon-link" href="{{ url_for('signup') }}">📝 Sign Up</a>
+        {% endif %}
+        <a class="icon-link" href="{{ url_for('cart') }}">🛒</a>
+      </div>
+    </nav>
+    
+    
+    <!-- Order Info -->
+    <div class="order-bar">
+      <span>📍 Table Reservation: Available </span>
+      <span>Dine-In Mode Active</span>
+    </div>
+
+    <!-- Dine-In Banner -->
+    <div class="dinein-banner">
+      🍽️ You are ordering for <strong>DINE IN</strong>. Enjoy your meal at the
+      table!
+    </div>
+    <section class="food-gallery">
+      <img
+        src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80"
+        alt="Burger"
+      />
+      <img
+        src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=800&q=80"
+        alt="Chicken Bucket"
+      />
+      
+      <img
+        src="https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?auto=format&fit=crop&w=800&q=80"
+        alt="Loaded Fries"
+      />
+      <img
+        src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=800&q=80"
+        alt="Platter"
+      />
+      <img
+        src="https://images.unsplash.com/photo-1506354666786-959d6d497f1a?auto=format&fit=crop&w=800&q=80"
+        alt="Tacos & Wraps"
+      />
+    </section>
+
+    <!-- Promo -->
+    <section class="promo-banner">
+      <h1>FRESH • HOT • DELICIOUS</h1>
+      <p>Savor every bite with our chef-crafted recipes, made fresh for you!</p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>© 2025 ServeSmart Technologies | All rights reserved.</p>
+    </footer>
+  </body>
+</html>

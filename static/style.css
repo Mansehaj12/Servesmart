@@ -1,0 +1,296 @@
+/* ServeSmart Unified UI - Enhanced Clean Design */
+
+:root {
+  --primary: #ff7043;
+  --primary-dark: #fb8c00;
+  --accent: #f4b400;
+  --dark: #1a1a1a;
+  --light: #fefefe;
+  --gray: #666;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--light);
+  color: #333;
+  scroll-behavior: smooth;
+}
+.food-gallery img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 15px;
+  transition: transform 0.3s ease;
+  background-color: #f6f6f6; /* optional fallback if image loads slow */
+}
+
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--dark);
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--accent);
+}
+
+.nav-links a {
+  margin-left: 1.5rem;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+}
+
+.hero {
+  padding: 5rem 2rem;
+  text-align: center;
+  background: linear-gradient(to right, #fff3e0, #ffe0b2);
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+.username-text {
+  font-weight: 500;
+  color: #333;
+  margin-right: 10px;
+}
+
+.cta,
+.btn,
+.add-btn {
+  padding: 0.6rem 1.2rem;
+  background-color: var(--primary);
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: background 0.3s;
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+}
+
+.cta:hover,
+.btn:hover,
+.add-btn:hover {
+  background-color: var(--primary-dark);
+}
+
+.menu-container {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.menu-title,
+.section h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: var(--primary);
+  margin-bottom: 2rem;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.menu-item,
+.card {
+  background-color: white;
+  padding: 1.2rem;
+  border-radius: 15px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.menu-item:hover,
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.menu-item img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.menu-item h3 {
+  color: var(--primary);
+  margin: 0.8rem 0 0.3rem;
+}
+
+.menu-item p {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 0.8rem;
+}
+
+.menu-item .price {
+  font-weight: bold;
+  color: #333;
+}
+
+.toast {
+  visibility: hidden;
+  min-width: 250px;
+  background-color: #d3232a;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 1rem;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.5s ease-in-out;
+}
+
+.toast.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.cart-icon {
+  position: relative;
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: white;
+}
+
+#cart-count {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: #fff;
+  color: #d3232a;
+  font-size: 0.75rem;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+.item-card button {
+  background: #d3232a;
+  color: white;
+  font-size: 1.2rem;
+  border: none;
+  padding: 0.5rem 0.8rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.item-card button:hover {
+  background: #b71c1c;
+}
+
+.container {
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+}
+
+form input,
+form button {
+  width: 100%;
+  padding: 0.9rem;
+  margin: 0.6rem 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+form button {
+  background-color: var(--primary);
+  color: white;
+  font-weight: bold;
+  border: none;
+  transition: background 0.3s ease;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: var(--primary-dark);
+}
+
+.footer {
+  background-color: var(--dark);
+  color: white;
+  text-align: center;
+  padding: 1.2rem;
+  margin-top: 2rem;
+  font-size: 1rem;
+}
+
+.section {
+  padding: 3rem 2rem;
+  max-width: 1000px;
+  margin: auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
+}
+
+.section p {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--gray);
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .nav-links a {
+    margin: 0.5rem 0;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+}

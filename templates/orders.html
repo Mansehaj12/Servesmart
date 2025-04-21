@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Your Orders - ServeSmart{% endblock %}
+
+{% block content %}
+<div class="section">
+  <h2>Your Orders</h2>
+
+  {% if orders %}
+    <div class="menu-grid">
+      {% for order in orders %}
+        <div class="menu-item card">
+          <h3>{{ order.item }}</h3>
+          <p>Quantity: {{ order.quantity }}</p>
+          <p class="price">₹{{ order.total_price }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>You haven't placed any orders yet!</p>
+  {% endif %}
+</div>
+{% endblock %}

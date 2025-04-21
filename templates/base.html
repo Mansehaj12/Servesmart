@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}ServeSmart{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  {% block head %}{% endblock %}
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="left">
+      <div class="logo">🍗 ServeSmart</div>
+      <a class="nav-link" href="{{ url_for('menu') }}">Menu</a>
+      <a class="nav-link" href="#">Deals</a>
+    </div>
+    <div class="right">
+      <a class="icon-link" href="{{ url_for('login') }}">👤 Sign In</a>
+      <a class="icon-link" href="{{ url_for('cart') }}">🛒</a>
+    </div>
+  </nav>
+
+  {% block content %}{% endblock %}
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 ServeSmart Technologies | All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

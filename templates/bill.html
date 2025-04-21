@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Billing Summary | ServeSmart</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #fffdf8;
+        margin: 0;
+        padding: 0;
+        color: #2e1f17;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background-color: #fff8f0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        border-radius: 10px;
+      }
+
+      .page-heading {
+        text-align: center;
+        color: #d3232a;
+        margin-bottom: 2rem;
+      }
+
+      .bill-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 2rem;
+      }
+
+      .bill-table th,
+      .bill-table td {
+        padding: 12px 16px;
+        border: 1px solid #ddd;
+        text-align: center;
+      }
+
+      .bill-table th {
+        background-color: #d3232a;
+        color: white;
+      }
+
+      .bill-table tr:nth-child(even) {
+        background-color: #fdf1eb;
+      }
+
+      .total-amount {
+        text-align: right;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #b71c1c;
+      }
+
+      .pay-now-btn {
+        margin-top: 1rem;
+        background-color: #d3232a;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+
+      .pay-now-btn:hover {
+        background-color: #a31515;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="page-heading">🧾 Billing Summary</h2>
+      {% if session.cart %}
+      <table class="bill-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Price (₹)</th>
+            <th>Quantity</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% set grand_total = 0 %}
+          {% for item in session.cart %}
+          <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.price }}</td>
+            <td>1</td>
+            <td>{{ item.price }}</td>
+            {% set grand_total = grand_total + (item.price | int) %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <div class="total-amount">
+        <h3>Grand Total: ₹{{ grand_total }}</h3>
+        <button class="pay-now-btn">Pay Now</button>
+      </div>
+      {% else %}
+      <p>Your cart is empty. Add items to view your bill.</p>
+      {% endif %}
+    </div>
+  </body>
+</html>
+  

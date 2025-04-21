@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Cart | ServeSmart</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #fff;
+        margin: 0;
+        padding: 0;
+      }
+
+      .cart-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 20px;
+      }
+
+      .cart-left {
+        flex: 1 1 60%;
+      }
+
+      .cart-right {
+        flex: 1 1 35%;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        padding: 20px;
+        height: fit-content;
+        background-color: #fafafa;
+      }
+
+      .cart-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        border: 1px solid #f2f2f2;
+        border-radius: 10px;
+        padding: 16px;
+        background: #fcfcfc;
+      }
+
+      .cart-item img {
+        width: 100px;
+        border-radius: 8px;
+        margin-right: 20px;
+      }
+
+      .cart-details {
+        flex: 1;
+      }
+
+      .cart-details h4 {
+        margin: 0 0 10px;
+      }
+
+      .cart-price {
+        font-weight: bold;
+        color: #333;
+      }
+
+      .qty-control {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .qty-control button {
+        padding: 5px 12px;
+        font-size: 18px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        background-color: #fff;
+        cursor: pointer;
+      }
+
+      .remove-btn {
+        color: #b71c1c;
+        text-decoration: underline;
+        font-size: 0.9rem;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+
+      .checkout-summary h3 {
+        margin: 0;
+        margin-bottom: 20px;
+      }
+
+      .summary-line {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 0;
+      }
+
+      .donation {
+        border-top: 1px solid #ccc;
+        padding-top: 10px;
+        margin-top: 10px;
+        font-size: 0.9rem;
+      }
+
+      .checkout-btn {
+        width: 100%;
+        background-color: #d3232a;
+        color: white;
+        border: none;
+        padding: 14px;
+        border-radius: 25px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+
+      .checkout-btn:hover {
+        background-color: #aa191f;
+      }
+
+      .back-to-menu {
+        margin-bottom: 20px;
+        display: inline-block;
+        color: #d3232a;
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      .section-title {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cart-container">
+      <!-- Left: Cart Items -->
+      <div class="cart-left">
+        <a href="/menu" class="back-to-menu">← Back to Menu</a>
+        <h2 class="section-title">MY CART</h2>
+
+        {% for item in cart_items %}
+
+        <div class="cart-item">
+          <img
+            src="{{ item.image_url or '/static/default.jpg' }}"
+            alt="{{ item.name }}"
+          />
+          <div class="cart-details">
+            <h4>{{ item.name }}</h4>
+            <div class="qty-control">
+              <button>-</button>
+              <span>1</span>
+              <button>+</button>
+            </div>
+            <p class="cart-price">₹{{ item.price }}</p>
+            <form
+              method="POST"
+              action="{{ url_for('remove_from_cart', item_id=item.id) }}"
+            >
+              <button class="remove-btn" type="submit">Remove</button>
+            </form>
+          </div>
+        </div>
+        {% else %}
+        <p>Your cart is empty.</p>
+        {% endfor %}
+
+        <form action="/clear_cart" method="POST">
+          <button class="remove-btn" type="submit">Remove All</button>
+        </form>
+      </div>
+
+      <!-- Right: Summary -->
+      <div class="cart-right">
+        <div class="checkout-summary">
+          <h3>
+            {{ cart_items|length }} ITEM{{ 'S' if cart_items|length > 1 }}
+          </h3>
+
+          {% set subtotal = total %} {% set gst = (subtotal * 0.05) | round(2)
+          %} {% set total = subtotal + gst %}
+
+          <div class="summary-line">
+            <span>Subtotal</span><span>₹{{ subtotal }}</span>
+          </div>
+          <div class="summary-line">
+            <span>GST (5%)</span><span>₹{{ gst }}</span>
+          </div>
+
+          <div class="donation">
+            <label
+              ><input type="checkbox" name="donate" /> Donate ₹5.00 to Add
+              Hope.<br />
+              <small
+                >Our goal is to feed 20 million people by 2025.</small
+              ></label
+            >
+          </div>
+
+          <button class="checkout-btn" onclick="window.location.href='/bill'">
+            Checkout — ₹{{ total + 5 if request.form.get('donate') else total }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
